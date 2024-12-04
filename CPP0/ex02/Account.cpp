@@ -14,11 +14,21 @@ void Account::_displayTimestamp(void)
 	
 	std::cout << "[";
 	std::cout << 1900 + localtime->tm_year;
+	if (localtime->tm_mon < 10)
+		std::cout << "0";
 	std::cout << localtime->tm_mon + 1;
+	if (localtime->tm_mday < 10)
+		std::cout << "0";
 	std::cout << localtime->tm_mday;
 	std::cout << "_";
+	if (localtime->tm_hour < 10)
+		std::cout << "0";
 	std::cout << localtime->tm_hour;
+	if (localtime->tm_min < 10)
+		std::cout << "0";
 	std::cout << localtime->tm_min;
+	if (localtime->tm_sec < 10)
+		std::cout << "0";
 	std::cout << localtime->tm_sec << "] ";
 }
 
