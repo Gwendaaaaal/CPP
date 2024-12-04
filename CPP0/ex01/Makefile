@@ -1,4 +1,4 @@
-NAME = megaphone
+NAME = repertoire
 
 SOURCES = Contact.cpp PhoneBook.cpp main.cpp
 
