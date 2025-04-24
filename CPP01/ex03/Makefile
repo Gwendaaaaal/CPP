@@ -14,6 +14,8 @@ CFLAGS = -Wall -Werror -Wextra -std=c++98
 
 RMFLAGS = -rf
 
+.PHONY: all clean fclean re
+
 all : $(OBJ_DIR) $(NAME)
 
 $(NAME) : $(OBJECTS) 
@@ -33,5 +35,4 @@ fclean : clean
 
 re : fclean all
 
-PHONY = all clean fclean re
 
