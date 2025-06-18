@@ -11,6 +11,6 @@ int main()
     frag1.beRepaired(20);
     frag1.highFivesGuys();
 
-    std::cout << "\n=== Destructor calls ===" << std::endl;
+    std::cout << std::endl << "=== Destructor calls ===" << std::endl;
     return 0;
 }
