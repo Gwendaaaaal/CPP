@@ -3,7 +3,8 @@
 int main(void)
 {
 	Zombie *heap = newZombie("heap");
-	heap->announce();
+	if (heap)
+		heap->announce();
 
 	randomChump("stack");
 	delete(heap);

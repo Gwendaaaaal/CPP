@@ -4,39 +4,39 @@ int main() {
 	std::cout << "=== Constructors ===" << std::endl;
 	ClapTrap a("Alpha");
 	ClapTrap b("Bravo");
-	ClapTrap c = a; // Copy constructor
+	ClapTrap c = a; 
+	ClapTrap d;
+	d = b; 
 
-	std::cout << "\n=== Assignment Operator ===" << std::endl;
-	b = a; // Copy assignment
-
-	std::cout << "\n=== Attacking ===" << std::endl;
+	std::cout << std::endl << "=== Attacking ===" << std::endl;
+	c.attack("d");
+	d.attack("c");
 	a.attack("target1");
 	a.attack("target2");
 
-	std::cout << "\n=== Taking Damage ===" << std::endl;
+	std::cout << std::endl << "=== Taking Damage ===" << std::endl;
 	a.takeDamage(3);
 	a.takeDamage(4);
-	a.takeDamage(10); // Overkill test
-
-	std::cout << "\n=== Repairing ===" << std::endl;
+	a.takeDamage(10); 
+	std::cout << std::endl << "=== Repairing ===" << std::endl;
 	b.beRepaired(5);
 	b.takeDamage(2);
 	b.beRepaired(3);
 
-	std::cout << "\n=== Energy depletion test ===" << std::endl;
-	for (int i = 0; i < 12; ++i) {
+	std::cout << std::endl << "=== Energy depletion test ===" << std::endl;
+	for (int i = 0; i < 10; ++i) {
 		b.attack("Dummy");
 	}
 
-	std::cout << "\n=== Repair with no energy ===" << std::endl;
-	b.beRepaired(5); // Should not work
+	std::cout << std::endl << "=== Repair with no energy ===" << std::endl;
+	b.beRepaired(5); 
 
-	std::cout << "\n=== Attack with 0 hit points ===" << std::endl;
+	std::cout << std::endl << "=== Attack with 0 hit points ===" << std::endl;
 	ClapTrap dead("DeadBot");
 	dead.takeDamage(100);
-	dead.attack("Target"); // Should not work
-	dead.beRepaired(10);   // Should not work
+	dead.attack("Target");
+	dead.beRepaired(10);
 
-	std::cout << "\n=== Destructors ===" << std::endl;
+	std::cout << std::endl << "=== Destructors ===" << std::endl;
 	return 0;
 }
