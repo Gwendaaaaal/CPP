@@ -15,7 +15,7 @@ public:
 	~Dog();
 	
 	void		makeSound() const;
-	void		setIdea(int i, std::string idea);
+	void		setIdea(int i, std::string idea) const;
 	std::string getIdea(int i) const;
 };
 

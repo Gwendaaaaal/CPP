@@ -17,7 +17,7 @@ public:
 	
 	std::string		getType() const;
 	virtual void	makeSound() const;
-	virtual void		setIdea(int i, std::string idea);
+	virtual void		setIdea(int i, std::string idea) const;
 	virtual std::string getIdea(int i) const;
 };
 

@@ -6,10 +6,10 @@ Dog::Dog()
 	this->type = "Dog";
 }
 
-Dog::Dog(const Dog &other)
+Dog::Dog(const Dog &other) : Animal(other)
 {
 	std::cout << "Dog copy constructor called" << std::endl;
-	this->type = other.type;
+	*this = other;
 }
 
 Dog& Dog::operator=(const Dog &other)

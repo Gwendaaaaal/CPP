@@ -20,13 +20,13 @@ int main() {
     delete j;
     delete i;
 
-	std::cout << "----- MORE TESTS -----" << std::endl;
+	std::cout << "WrongAnimal tests" << std::endl;
 
     const WrongAnimal* wrong = new WrongAnimal();
     const WrongAnimal* wrongCat = new WrongCat();
 
-    wrong->makeSound(); // WrongAnimal sound
-    wrongCat->makeSound(); // Still WrongAnimal sound, not WrongCat!
+    wrong->makeSound();
+    wrongCat->makeSound();
 
     delete wrong;
     delete wrongCat;

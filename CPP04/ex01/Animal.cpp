@@ -35,12 +35,13 @@ void Animal::makeSound() const
 	std::cout << "Animal sound" << std::endl;
 }
 
-void Animal::setIdea(int i, std::string idea)
+void Animal::setIdea(int i, std::string idea) const
 {
 	(void) i;
 	(void) idea;
 	std::cout << "This animal doesn't have a brain.." << std::endl;
 }
+
 std::string Animal::getIdea(int i) const
 {
 	(void) i;
