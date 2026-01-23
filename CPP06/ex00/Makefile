@@ -1,6 +1,6 @@
 NAME = ex00
 
-SOURCES = main.cpp ScalarConvert.cpp
+SOURCES = main.cpp ScalarConverter.cpp
 
 OBJ_DIR = obj
 
@@ -34,5 +34,4 @@ fclean : clean
 	rm $(RMFLAGS) $(NAME)
 
 re : fclean all
-
 
