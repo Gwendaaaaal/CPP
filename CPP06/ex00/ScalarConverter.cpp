@@ -7,6 +7,7 @@
 #include <iomanip>
 #include <iostream>
 #include <limits>
+#include <cerrno>
 
 static bool	isNanValue(double value)
 {
@@ -16,7 +17,7 @@ static bool	isNanValue(double value)
 static bool	isInfValue(double value)
 {
 	return (value == std::numeric_limits<double>::infinity()
-		|| value == -std::numeric_limits<double>::infinity());
+	|| value == -std::numeric_limits<double>::infinity());
 }
 
 static bool	isIntegralValue(double value)
@@ -61,9 +62,10 @@ static bool	isPseudoLiteral(const std::string &literal, double &value,
 static bool	parseNumber(const std::string &literal, double &value)
 {
 	char	*end = NULL;
+	errno = 0;
 
 	value = std::strtod(literal.c_str(), &end);
-	if (end == NULL || *end != '\0')
+	if (end == NULL || *end != '\0' || errno == ERANGE)
 		return (false);
 	return (true);
 }
@@ -103,16 +105,14 @@ void ScalarConverter::convert(const std::string &literal)
 		}
 	}
 	std::cout << "char: ";
-	if (pseudo || isNanValue(value) || isInfValue(value)
-		|| value < 0 || value > 127)
+	if (pseudo || isNanValue(value) || isInfValue(value) || value < 0 || value > 127)
 		std::cout << "impossible" << std::endl;
 	else if (!std::isprint(static_cast<unsigned char>(value)))
 		std::cout << "Non displayable" << std::endl;
 	else
 		std::cout << "'" << static_cast<char>(value) << "'" << std::endl;
 	std::cout << "int: ";
-	if (pseudo || isNanValue(value) || isInfValue(value)
-		|| value < INT_MIN || value > INT_MAX)
+	if (pseudo || isNanValue(value) || isInfValue(value) || value < INT_MIN || value > INT_MAX)
 		std::cout << "impossible" << std::endl;
 	else
 		std::cout << static_cast<int>(value) << std::endl;
@@ -126,12 +126,17 @@ void ScalarConverter::convert(const std::string &literal)
 		else
 			std::cout << "+inff" << std::endl;
 	}
+	else if (value < -std::numeric_limits<float>::max() || value > std::numeric_limits<float>::max())
+		std::cout << "impossible" << std::endl;
 	else
 	{
 		float	fvalue = static_cast<float>(value);
 
-		std::cout.setf(std::ios::fixed);
-		std::cout << std::setprecision(isIntegralValue(value) ? 1 : 6);
+		if (isIntegralValue(value))
+		{
+			std::cout.setf(std::ios::fixed);
+			std::cout << std::setprecision(1);
+		}
 		std::cout << fvalue << "f" << std::endl;
 	}
 	std::cout << "double: ";
@@ -146,8 +151,11 @@ void ScalarConverter::convert(const std::string &literal)
 	}
 	else
 	{
-		std::cout.setf(std::ios::fixed);
-		std::cout << std::setprecision(isIntegralValue(value) ? 1 : 6);
+		if (isIntegralValue(value))
+		{
+			std::cout.setf(std::ios::fixed);
+			std::cout << std::setprecision(1);
+		}
 		std::cout << value << std::endl;
 	}
 }
