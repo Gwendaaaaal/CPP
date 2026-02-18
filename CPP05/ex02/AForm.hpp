@@ -60,7 +60,7 @@ public:
 	int			getMinGradeToExecute() const;
 
 	void beSigned(const Bureaucrat &bureau);
-	void execute(Bureaucrat const & executor);
+	void execute(Bureaucrat const & executor) const;
 };
 
 std::ostream& operator<<(std::ostream& out, const AForm& form);

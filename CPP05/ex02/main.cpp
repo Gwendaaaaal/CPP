@@ -22,7 +22,6 @@ int main()
 	std::cout << b << std::endl;
 	std::cout << c << std::endl;
 	{
-		std::cout << "----------------------" << std::endl;
 		Bureaucrat bigboss("Boss", 1);
 		Bureaucrat intern("Intern", 150);
 		

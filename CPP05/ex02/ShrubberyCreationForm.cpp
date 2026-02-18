@@ -2,7 +2,7 @@
 #include "AForm.hpp"
 #include <fstream>
 
-ShrubberryCreationForm::ShrubberryCreationForm(const std::string &target) : AForm("PresidentialPardon", 145, 137), _target(target) {}
+ShrubberryCreationForm::ShrubberryCreationForm(const std::string &target) : AForm("ShrubberyCreation", 145, 137), _target(target) {}
 
 ShrubberryCreationForm::ShrubberryCreationForm(const ShrubberryCreationForm &other) : AForm(other), _target(other._target) {}
 
