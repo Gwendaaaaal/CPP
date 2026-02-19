@@ -16,27 +16,25 @@ void increment(int& x)
 int main()
 {
     int a[] = {1, 2, 3, 4};
-    size_t lenA = sizeof(a) / sizeof(a[0]);
 
     std::cout << "Print int array:" << std::endl;
-    iter(a, lenA, printElem<int>);
+    iter(a, 4, printElem<int>);
 
     std::cout << "Increment int array:" << std::endl;
-    iter(a, lenA, increment);
-    iter(a, lenA, printElem<int>);
+    iter(a, 4, increment);
+    iter(a, 4, printElem<int>);
 
-    std::string s[] = {"salut", "42", "templates"};
-    size_t lenS = sizeof(s) / sizeof(s[0]);
+    std::string s[] = {"abc", "123", "xyz"};
 
     std::cout << "Print string array:" << std::endl;
-    iter(s, lenS, printElem<std::string>);
+    iter(s, 3, printElem<std::string>);
 
     const int ca[] = {10, 20, 30};
-    size_t lenCA = sizeof(ca) / sizeof(ca[0]);
 
     std::cout << "Print const int array:" << std::endl;
-    iter(ca, lenCA, printElem<int>);
+    iter(ca, 3, printElem<int>);
 
+	// increment non const avec array const : ne compile pas
     // iter(ca, lenCA, increment);
 
     return 0;
