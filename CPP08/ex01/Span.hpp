@@ -2,13 +2,13 @@
 # define SPAN_HPP
 
 #include <algorithm>
-#include <vector>
 #include <exception>
+#include <vector>
 
 class Span {
 private:
-	std::vector<int> _vect;
 	unsigned int _max;
+	std::vector<int> _vect;
 
 public:
 	Span();
@@ -21,8 +21,14 @@ public:
 	int shortestSpan() const;
 	int longestSpan() const;
 
-	void addRange(int range);
 
+	template <typename T>
+	void addRange(T first, T last)
+	{
+		if (std::distance(first, last) + _vect.size() > _max)
+			throw std::exception();
+		_vect.insert(_vect.end(), first, last);
+	}
 };
 
 #endif

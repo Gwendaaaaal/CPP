@@ -1,10 +1,11 @@
 #include "Span.hpp"
+#include <algorithm>
 
 Span::Span() : _max(10) {}
 
 Span::Span(unsigned int N) : _max(N) {}
 
-Span::Span(const Span &other) : _vect(other._vect), _max(other._max) {}
+Span::Span(const Span &other) : _max(other._max), _vect(other._vect) {}
 
 Span& Span::operator=(const Span &other)
 {
@@ -52,11 +53,4 @@ int Span::longestSpan() const
 		throw std::exception();
 
 	return (*std::max_element(_vect.begin(), _vect.end()) - *std::min_element(_vect.begin(), _vect.end()));
-}
-
-void Span::addRange(int range)
-{
-	if (_vect.size() + range >= _max)
-		throw std::exception();
-
 }
