@@ -3,16 +3,21 @@ Array<T>::Array() : _data(NULL), _size(0)
 {}
 
 template <typename T>
-Array<T>::Array(unsigned int n) : _data(new T[n]), _size(n)
+Array<T>::Array(unsigned int n) : _data((n > 0) ? new T[n] : NULL), _size(n)
 {}
 
 template <typename T>
 Array<T>::Array(const Array &other) 
 {
 	this->_size = other._size;
-	this->_data = new T[_size];
-	for (unsigned int i = 0; i < _size; ++i)
-		this->_data[i] = other._data[i];
+	if (_size > 0)
+	{
+		this->_data = new T[_size];
+		for (unsigned int i = 0; i < _size; ++i)
+			this->_data[i] = other._data[i];
+	}
+	else
+		_data = NULL;
 }
 
 template <typename T>
@@ -22,9 +27,14 @@ Array<T>& Array<T>::operator=(const Array &other)
 		return *this;
 	delete[] _data;
 	this->_size = other._size;
-	this->_data = new T[_size];
-	for (unsigned int i = 0; i < _size; ++i)
-		this->_data[i] = other._data[i];
+	if (_size > 0)
+	{
+		this->_data = new T[_size];
+		for (unsigned int i = 0; i < _size; ++i)
+			this->_data[i] = other._data[i];
+	}
+	else
+		_data = NULL;
 	return *this;
 }
 
