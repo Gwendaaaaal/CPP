@@ -20,6 +20,18 @@ int main()
 		MutantStack<int>::iterator ite = mstack.end();
 		++it;
 		--it;
+		std::cout << "--- mstack: ---" << std::endl;
+		while (it != ite)
+		{
+			std::cout << *it << std::endl;
+			++it;
+		}
+		std::cout << "--- mstack after pops ---" << std::endl;
+		mstack.pop();
+		mstack.pop();
+		mstack.pop();
+		it = mstack.begin();
+		ite = mstack.end();
 		while (it != ite)
 		{
 			std::cout << *it << std::endl;
@@ -28,7 +40,7 @@ int main()
 		std::stack<int> s(mstack);
 	}
 	{
-		std::cout << "--- tests with list ---" << std::endl;
+		std::cout << "\n\n--- tests with list ---" << std::endl;
 		std::list<int> ilist;
 		ilist.push_back(5);
 		ilist.push_back(17);
@@ -43,6 +55,18 @@ int main()
 		std::list<int>::iterator ite = ilist.end();
 		++it;
 		--it;
+		std::cout << "--- ilist: ---" << std::endl;
+		while (it != ite)
+		{
+			std::cout << *it << std::endl;
+			++it;
+		}
+		ilist.pop_back();
+		ilist.pop_back();
+		ilist.pop_back();
+		it = ilist.begin();
+		ite = ilist.end();
+		std::cout << "--- ilist after pops ---" << std::endl;
 		while (it != ite)
 		{
 			std::cout << *it << std::endl;
