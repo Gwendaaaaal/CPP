@@ -173,7 +173,7 @@ static int parseInput(std::map<std::string, double>& map, std::ifstream& input)
 			continue;
 		}
 
-		std::cout << std::fixed << std::setprecision(2) << std::endl;
+		// std::cout << std::fixed << std::setprecision(2);
 		std::cout << date << " => " << value << " = " << (value * rate) << std::endl;
 	}
 	return (0);
