@@ -11,7 +11,7 @@ static bool isOperatorToken(const std::string& tok)
 
 static bool isDigitToken(const std::string& tok)
 {
-    return (tok.size() == 1 && std::isdigit(static_cast<unsigned char>(tok[0])));
+    return (tok.size() == 1 && std::isdigit(tok[0]));
 }
 
 static int applyOp(int a, int b, char op)
@@ -22,10 +22,10 @@ static int applyOp(int a, int b, char op)
     if (op == '/')
     {
         if (b == 0)
-            throw std::runtime_error("Error");
+            throw std::exception();
         return a / b;
     }
-    throw std::runtime_error("Error");
+    throw std::exception();
 }
 
 int RPN(const std::string& expr)
@@ -37,28 +37,25 @@ int RPN(const std::string& expr)
     while (ss >> tok)
     {
         if (isDigitToken(tok))
-        {
             st.push(tok[0] - '0');
-        }
         else if (isOperatorToken(tok))
         {
             if (st.size() < 2)
-                throw std::runtime_error("Error");
+                throw std::exception();
 
-            int b = st.top(); st.pop();
-            int a = st.top(); st.pop();
-
+            int b = st.top();
+			st.pop();
+            int a = st.top();
+			st.pop();
             int res = applyOp(a, b, tok[0]);
             st.push(res);
         }
         else
-        {
-            throw std::runtime_error("Error");
-        }
+            throw std::exception();
     }
 
     if (st.size() != 1)
-        throw std::runtime_error("Error");
+        throw std::exception();
 
     return st.top();
 }
